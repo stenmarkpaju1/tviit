@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="2021.02.12" author="paju">
+        <sql>
+            CREATE TABLE "user" (
+                id UUID,
+                username VARCHAR(20) NOT NULL,
+                email_address VARCHAR(255) NOT NULL,
+                first_name VARCHAR(20) NOT NULL,
+                middle_name VARCHAR(30),
+                last_name VARCHAR(20) NOT NULL,
+                CONSTRAINT id_username_email_address_PK
+                PRIMARY KEY (id, username, email_address)
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="2021.02.12.1" author="paju">
+        <sql>
+            CREATE TABLE "tweets" (
+                id UUID PRIMARY KEY,
+                content VARCHAR(255)
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="2021.02.12.2" author="paju">
+        <sql>
+            ALTER TABLE "tweets" ADD timestamp TIMESTAMP NOT NULL;
+        </sql>
+    </changeSet>
+    <changeSet id="2021.02.12.3" author="paju">
+        <sql>
+            ALTER TABLE "tweets" ADD username VARCHAR(20) NOT NULL;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

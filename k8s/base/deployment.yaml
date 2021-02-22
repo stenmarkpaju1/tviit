@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tviit
+  labels:
+    app: tviit
+spec:
+  replicas: 4
+  minReadySeconds: 1
+  progressDeadlineSeconds: 60
+  revisionHistoryLimit: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: tviit
+  template:
+    metadata:
+      labels:
+        app: tviit
+    spec:
+      containers:
+        - name: tviit
+          image: nginx:1.17.8-alpine #nginx:1.16.1-alpine
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              memory: "128Mi" #128 MB
+              cpu: "200m" #200 millicpu (.2 cpu or 20% of the cpu)
