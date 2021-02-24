@@ -1,1 +1,34 @@
-version: '1.0'
+version: '3.4'
+
+services:
+  tviit:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    ports:
+    - 8085:8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db-tviit:5432/tviit
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: St19982605
+      JPA_SHOW_SQL: "true"
+    networks:
+      - tviit-network
+    command: [ "java", "-jar", "tviit-0.0.1-SNAPSHOT.jar" ]
+    depends_on:
+      - db-tviit
+
+  db-tviit:
+    image: postgres
+    networks:
+      - tviit-network
+    restart: always
+    volumes:
+      - ./tviit.ddl
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: St19982605
+      POSTGRES_DB: tviit
+networks:
+  tviit-network:

@@ -33,7 +33,7 @@ public class UserService {
                 .middleName(dto.getMiddleName())
                 .lastName(dto.getLastName())
                 .emailAddress(dto.getEmailAddress())
-                .username(dto.getUserName())
+                .username(dto.getUsername())
                 .build();
 
         userRepository.save(user);

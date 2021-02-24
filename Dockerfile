@@ -9,6 +9,6 @@ FROM openjdk:11-jre-slim
 
 WORKDIR /app
 
-COPY --from=build --chown=app:app /home/gradle/src/build/libs/tviit-0.0.1-SNAPSHOT.jar .
+COPY --from=build /home/gradle/src/build/libs/tviit-0.0.1-SNAPSHOT.jar .
 
 CMD [ "java", "-jar", "tviit-0.0.1-SNAPSHOT.jar" ]

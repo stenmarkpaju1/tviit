@@ -3,6 +3,7 @@ package paju.personal.tviit.persistence.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import paju.personal.dto.UserDto;
 import paju.personal.tviit.persistence.model.Tweet;
 import paju.personal.tviit.persistence.model.User;
 
